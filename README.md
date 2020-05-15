@@ -85,10 +85,10 @@ Working with a 10m video long, for learning purpose, might be slow/boring, let's
 ```bash
 # generating a random 1 minute short clip
 # not changing codec though
-docker run --rm -v $(pwd):/files jrottenberg/ffmpeg -w /files \
-  -i bunny_634s_60fps_1080p_4487kb.mp4 \
+docker run --rm -v $(pwd):/files jrottenberg/ffmpeg  \
+  -i /files/bunny_634s_60fps_1080p_4487kb.mp4 \
   -ss 00:01:24 -t 00:01:00 -c copy \
-  bunny_60s_60fps_1080p_4487kb.mp4
+  /files/bunny_60s_60fps_1080p_4487kb.mp4
 
 ```
 
@@ -113,10 +113,10 @@ Toward to deliver video for all devices in diverse network conditions, the media
 
 ```bash
 # same resolution but different bit rate
-docker run --rm -v $(pwd):/files jrottenberg/ffmpeg -w /files \
-  -i bunny_60s_60fps_1080p_4487kb.mp4 \
+docker run --rm -v $(pwd):/files jrottenberg/ffmpeg  \
+  -i /files/bunny_60s_60fps_1080p_4487kb.mp4 \
   -c:v libx264 -crf 23 -maxrate 2M -bufsize 4M \
-  bunny_60s_60fps_1080p_2000kb.mp4
+  /files/bunny_60s_60fps_1080p_2000kb.mp4
 ```
 | Property   |      Value      |
 |----------|:-------------:|
@@ -131,11 +131,11 @@ docker run --rm -v $(pwd):/files jrottenberg/ffmpeg -w /files \
 
 ```bash
 # changing resolution
-docker run --rm -v $(pwd):/files jrottenberg/ffmpeg -w /files \
-  -i bunny_60s_60fps_1080p_4487kb.mp4 \
+docker run --rm -v $(pwd):/files jrottenberg/ffmpeg \
+  -i /files/bunny_60s_60fps_1080p_4487kb.mp4 \
   -vf scale=640:-1 -sws_flags lanczos \
   -c:v libx264 -crf 23 -maxrate 600k -bufsize 1200k \
-  bunny_60s_60fps_640p_600kb.mp4
+  /files/bunny_60s_60fps_640p_600kb.mp4
 ```
 
 | Property   |      Value      |
