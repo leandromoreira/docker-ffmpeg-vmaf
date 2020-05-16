@@ -13,6 +13,11 @@ Its common usages, best practices, tips are explained here. Most of the informat
 # MacOS 10.15.4 - 2.3 GHz Quad-Core Intel Core i5
 # Docker Desktop 2.3.0 / 4 logical cores / 2 GB RAM
 
+# PLEASE PROVIDE two video files for comparison
+#  ref.mp4 - the reference video file
+#  distor.mp4 - the distorted videoo file (transcoded)
+# both files must be at the root where you ran these commands
+
 # analyzing all frames (from 1m 1080p video)
 time docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
   ffmpeg -i /files/ref.mp4 -i /files/distor.mp4 \
