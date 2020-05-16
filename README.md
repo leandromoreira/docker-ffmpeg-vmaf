@@ -2,9 +2,9 @@
 
 [VMAF](https://github.com/Netflix/vmaf) is a perceptual video quality assessment algorithm developed by **Netflix**. It seeks to reflect the viewer’s perception of the streaming quality.
 
-It's a useful quality metric that can be used to computerize the common media workflow quality analysis instead of relying on people's eyes.
+It's a valuable quality metric that can be used to computerize the common media workflow quality analysis instead of relying on people's eyes.
 
-Its common usages, best practices, tips are explained here. Most of the information here is based in the [main repository](https://github.com/Netflix/vmaf) and the [latest post from Netflix](https://netflixtechblog.com/vmaf-the-journey-continues-44b51ee9ed12).
+Its common usages, best practices, tips are explained here. Most of the information here is based on the [main repository](https://github.com/Netflix/vmaf) and the [latest post from Netflix](https://netflixtechblog.com/vmaf-the-journey-continues-44b51ee9ed12).
 
 # TLDR; how to use
 
@@ -107,7 +107,7 @@ The reference file `bunny_60s_60fps_1080p_4487kb.mp4` has the following properti
 
 ## Applying transformations
 
-Toward to deliver video for all devices in diverse network conditions, the media needs to pass through some transformations, mostly related to the number of bits required and the resolution. Usually, we keep 2h.
+Toward to deliver video for all devices in diverse network conditions, the media needs to pass through some transformations, mostly related to the number of bits required and the resolution.
 
 #### Transrating
 
