@@ -57,6 +57,8 @@ VMAF compares a reference video file against a targe one, usually, the following
 1. check the **score** (>= 70 good/fair)
 1. if it's not good, go back to step 2, change the transformation's properties
 
+![workflow](/images/common_workflow.png)
+
 ## Toolset
 
 Although VMAF can be used as standalone software, it's easier and faster to use it as a dockerized FFmpeg filter. 
