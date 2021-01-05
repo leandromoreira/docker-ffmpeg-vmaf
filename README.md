@@ -19,7 +19,7 @@ Its common usages, best practices, tips are explained here. Most of the informat
 # both files must be at the root where you ran these commands
 
 # analyzing all frames (from 1m 1080p video)
-time docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
+time docker run --rm -v $(pwd):/files five82/ffmpeg-git \
   ffmpeg -i /files/ref.mp4 -i /files/distor.mp4 \
   -lavfi libvmaf=log_fmt=json -f null -
 
@@ -28,7 +28,7 @@ VMAF score = 93.130018
 0.08s user 0.16s system 0% cpu 4:13.55 total
 
 # (QUICKER) analyzing 1 out of 5 frames (from 1m 1080p video)
-time docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
+time docker run --rm -v $(pwd):/files five82/ffmpeg-git \
   ffmpeg -i /files/ref.mp4 -i /files/distor.mp4 \
   -lavfi libvmaf=log_fmt=json:n_subsample=5 -f null -
 
@@ -39,7 +39,7 @@ VMAF score = 93.130807
 
 
 # analyzing different renditions
-docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
+docker run --rm -v $(pwd):/files five82/ffmpeg-git \
   ffmpeg -i /files/ref.mp4 -i /files/distor_lower_resolution.mp4 \
   -filter_complex \
   "[1:v]scale=1920x1080:flags=bicubic[main];[main][0:v]libvmaf=log_fmt=json:n_subsample=5" -f null -
@@ -71,7 +71,7 @@ Although VMAF can be used as standalone software, it's easier and faster to use 
 * It's faster because it takes advantage of the FFmpeg's intermediate steps (decoding/scaling) to calc VMAF, avoiding multiple passes and unnecessary storage.
 * It's easier because it's a single step/tool process.
 
-The docker image we're going to use for FFmpeg/VMAF is [five82/ffmpeg-vmaf](https://github.com/five82/ffmpeg-vmaf) and for FFmpeg/media transformation is [jrottenberg/ffmpeg](https://github.com/jrottenberg/ffmpeg).
+The docker image we're going to use for FFmpeg/VMAF is [five82/ffmpeg-git](https://github.com/five82/ffmpeg-git) and for FFmpeg/media transformation is [jrottenberg/ffmpeg](https://github.com/jrottenberg/ffmpeg).
 
 ## Preping enviroment
 
@@ -158,7 +158,7 @@ docker run --rm -v $(pwd):/files jrottenberg/ffmpeg \
 
 ### All frames - slower
 ```bash
-time docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
+time docker run --rm -v $(pwd):/files five82/ffmpeg-git \
   ffmpeg -i /files/bunny_60s_60fps_1080p_4487kb.mp4 \
    -i /files/bunny_60s_60fps_1080p_2000kb.mp4 \
    -lavfi libvmaf=log_fmt=json -f null -
@@ -169,7 +169,7 @@ VMAF score = 93.130018
 ```
 ### Subsampling frames - faster (1 out of 5)
 ```bash
-time docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
+time docker run --rm -v $(pwd):/files five82/ffmpeg-git \
   ffmpeg -i /files/bunny_60s_60fps_1080p_4487kb.mp4 \
    -i /files/bunny_60s_60fps_1080p_2000kb.mp4 \
   -lavfi libvmaf=log_fmt=json:n_subsample=5 -f null -
@@ -184,7 +184,7 @@ Faster (almost 4x) and still kept the close VMAF score.
 ### Different resolution
 
 ```bash
-time docker run --rm -v $(pwd):/files five82/ffmpeg-vmaf \
+time docker run --rm -v $(pwd):/files five82/ffmpeg-git \
   ffmpeg -i /files/bunny_60s_60fps_1080p_4487kb.mp4 \
   -i /files/bunny_60s_60fps_640p_600kb.mp4 \
   -filter_complex \
